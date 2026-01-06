@@ -14,7 +14,7 @@ class NfeController extends Controller
         $result = [
             ["id_nfe" => 1, "nr_nfe" => 9998, "id_produto" => 1, "ds_produto" => "Produto 1", "nr_quantidade" => 1],
             ["id_nfe" => 1, "nr_nfe" => 9998, "id_produto" => 2, "ds_produto" => "Produto 2", "nr_quantidade" => 2],
-            ["id_nfe" => 1, "nr_nfe" => 9998, "id_produto" => 3, "ds_produto" => "Produto 2", "nr_quantidade" => 1]
+            ["id_nfe" => 1, "nr_nfe" => 9998, "id_produto" => 3, "ds_produto" => "Produto 3", "nr_quantidade" => 1]
         ];
 
         // Transformação dos dados pra JSON
