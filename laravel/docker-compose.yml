@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+
+  # Container do Laravel
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nfe-api-app
+    container_name: nfe-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    networks:
+      - nfe-network
+
+  # Container do Servidor Web
+  nginx:
+    image: nginx:alpine
+    container_name: nfe-nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - nfe-network
+
+  # Container do Banco de Dados
+  db:
+    image: mysql:8.0
+    container_name: nfe-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: nfe_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_USER: user_nfe
+    ports:
+      - "3306:3306"
+    networks:
+      - nfe-network
+
+networks:
+  nfe-network:
+    driver: bridge
